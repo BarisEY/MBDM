@@ -57,4 +57,4 @@ def lake_problem(b=0.42, q=2.0, mean=0.02, stdev=0.0017, delta=0.98,
     utility = np.sum(alpha*decisions*np.power(delta,np.arange(nvars)))
     inertia = np.sum(np.abs(np.diff(decisions)) > 0.02)/float(nvars-1)
 
-    return max_P, utility, inertia, reliability
+    return {'max_P' : max_P, 'utility' : utility, 'inertia' : inertia, 'reliability' : reliability}
