@@ -1,0 +1,12 @@
+Metadata-Version: 1.0
+Name: ema-workbench
+Version: 2.0.9
+Summary: exploratory modelling in Python
+Home-page: https://github.com/quaquel/EMAworkbench
+Author: Jan Kwakkel
+Author-email: j.h.kwakkel@tudelft.nl
+License: BSD 3-Clause
+Description: Project Documentation: https://emaworkbench.readthedocs.io/
+Platform: Linux
+Platform: Mac OS X
+Platform: Windows

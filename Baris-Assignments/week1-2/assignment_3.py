@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from ema_workbench import (Model, RealParameter, TimeSeriesOutcome, perform_experiments,
-                           ema_logging, SequentialEvaluator)
+                           ema_logging, SequentialEvaluator, MultiprocessingEvaluator)
 
 from ema_workbench.connectors.netlogo import NetLogoModel
 from ema_workbench.connectors.excel import ExcelModel
@@ -37,13 +37,40 @@ def PredPrey(prey_birth_rate=0.025, predation_rate=0.0015, predator_efficiency=0
             'predators' : predators,
             'prey' : prey}
 
-og_model = Model('predprey', PredPrey)
-excel_model = ExcelModel('predpreyexcel', wd='model_files', model_file="PredPrey.xlsx", default_sheet='Sheet1')
-vensim_model = PysdModel('predpreyvensim', mdl_file="model_files/PredPrey.mdl")
 
-list_of_models = [excel_model, vensim_model, og_model]
+def run_excel_model():
+    model = ExcelModel('predpreyexcel', wd='model_files', model_file="PredPrey.xlsx", default_sheet='Sheet1')
+    model.uncertainties = [RealParameter('prey_birth_rate', 0.015, 0.035),
+                           RealParameter('predation_rate', 0.0005, 0.003),
+                           RealParameter('predator_efficiency', 0.001, 0.004),
+                           RealParameter('predator_loss_rate', 0.04, 0.08)]
 
-for model in list_of_models:
+    model.outcomes = [TimeSeriesOutcome('TIME'),
+                      TimeSeriesOutcome('predators'),
+                      TimeSeriesOutcome('prey')]
+
+    model.default_sheet = "Sheet1"
+
+    with MultiprocessingEvaluator(model) as evaluator:
+        results = perform_experiments(model, 50, reporting_interval=0.25, evaluator=evaluator)
+
+def run_vensim_model():
+    model = PysdModel('predpreyvensim', mdl_file="model_files/PredPrey.mdl")
+    model.uncertainties = [RealParameter('prey_birth_rate', 0.015, 0.035),
+                           RealParameter('predation_rate', 0.0005, 0.003),
+                           RealParameter('predator_efficiency', 0.001, 0.004),
+                           RealParameter('predator_loss_rate', 0.04, 0.08)]
+
+    model.outcomes = [TimeSeriesOutcome('TIME'),
+                      TimeSeriesOutcome('predators'),
+                      TimeSeriesOutcome('prey')]
+
+    perform_experiments(model, 50)
+
+def run_netlogo_model():
+    model = NetLogoModel('predpreynl', wd='model_files', model_file="PredPrey.nlogo")
+    model.run_length = 365
+    model.replications = 50
 
     model.uncertainties = [RealParameter('prey_birth_rate', 0.015, 0.035),
                            RealParameter('predation_rate', 0.0005, 0.003),
@@ -54,8 +81,37 @@ for model in list_of_models:
                       TimeSeriesOutcome('predators'),
                       TimeSeriesOutcome('prey')]
 
+    with MultiprocessingEvaluator(model, n_processes=4, maxtasksperchild=8) as evaluator:
+        results = evaluator.perform_experiments(model.replications)
 
-    if __name__ == '__main__':
-        with SequentialEvaluator(model) as evaluator :
-            experiments, outcomes = evaluator.perform_experiments(scenarios=50)
-            print(experiments, outcomes)
+
+ema_logging.log_to_stderr(level=ema_logging.INFO)
+# ema_model = Model('predprey', PredPrey)
+if __name__ == '__main__':
+
+    run_vensim_model()
+    # run_netlogo_model() #TODO: There is a problem with the package for this code, comment it out if it does not work for you.
+    # run_excel_model()
+
+
+
+
+
+# list_of_models = [excel_model, vensim_model, og_model]
+#
+# for model in list_of_models:
+#
+#     model.uncertainties = [RealParameter('prey_birth_rate', 0.015, 0.035),
+#                            RealParameter('predation_rate', 0.0005, 0.003),
+#                            RealParameter('predator_efficiency', 0.001, 0.004),
+#                            RealParameter('predator_loss_rate', 0.04, 0.08)]
+#
+#     model.outcomes = [TimeSeriesOutcome('TIME'),
+#                       TimeSeriesOutcome('predators'),
+#                       TimeSeriesOutcome('prey')]
+#
+#
+#     if __name__ == '__main__':
+#         with SequentialEvaluator(model) as evaluator :
+#             experiments, outcomes = evaluator.perform_experiments(scenarios=50)
+#             print(experiments, outcomes)
