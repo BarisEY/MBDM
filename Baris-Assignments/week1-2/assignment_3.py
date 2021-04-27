@@ -84,7 +84,24 @@ def run_netlogo_model():
     with MultiprocessingEvaluator(model, n_processes=4, maxtasksperchild=8) as evaluator:
         results = evaluator.perform_experiments(model.replications)
 
-    return
+    return results
+
+def run_python_model():
+    model = Model('predpreypy', function=PredPrey)
+
+    model.uncertainties = [RealParameter('prey_birth_rate', 0.015, 0.035),
+                           RealParameter('predation_rate', 0.0005, 0.003),
+                           RealParameter('predator_efficiency', 0.001, 0.004),
+                           RealParameter('predator_loss_rate', 0.04, 0.08)]
+
+    model.outcomes = [TimeSeriesOutcome('TIME'),
+                      TimeSeriesOutcome('predators'),
+                      TimeSeriesOutcome('prey')]
+
+    with SequentialEvaluator(model) as evaluator:
+        results = evaluator.perform_experiments(scenarios=50)
+
+    return results
 
 
 ema_logging.log_to_stderr(level=ema_logging.INFO)
@@ -92,28 +109,8 @@ ema_logging.log_to_stderr(level=ema_logging.INFO)
 if __name__ == '__main__':
 
     x, y = run_vensim_model()
+    a, b = run_python_model()
     # run_netlogo_model() #TODO: There is a problem with the package for this code, comment it out if it does not work for you.
     # run_excel_model()
 
-
-
-
-
-# list_of_models = [excel_model, vensim_model, og_model]
-#
-# for model in list_of_models:
-#
-#     model.uncertainties = [RealParameter('prey_birth_rate', 0.015, 0.035),
-#                            RealParameter('predation_rate', 0.0005, 0.003),
-#                            RealParameter('predator_efficiency', 0.001, 0.004),
-#                            RealParameter('predator_loss_rate', 0.04, 0.08)]
-#
-#     model.outcomes = [TimeSeriesOutcome('TIME'),
-#                       TimeSeriesOutcome('predators'),
-#                       TimeSeriesOutcome('prey')]
-#
-#
-#     if __name__ == '__main__':
-#         with SequentialEvaluator(model) as evaluator :
-#             experiments, outcomes = evaluator.perform_experiments(scenarios=50)
-#             print(experiments, outcomes)
+q = 1
