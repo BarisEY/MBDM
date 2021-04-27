@@ -51,8 +51,8 @@ def run_excel_model():
 
     model.default_sheet = "Sheet1"
 
-    with MultiprocessingEvaluator(model) as evaluator:
-        results = perform_experiments(model, 50, reporting_interval=0.25, evaluator=evaluator)
+    # Can also use "MultiprocessingEvaluator" for this.
+    return perform_experiments(model, 50, reporting_interval=0.25)
 
 def run_vensim_model():
     model = PysdModel('predpreyvensim', mdl_file="model_files/PredPrey.mdl")
@@ -65,7 +65,7 @@ def run_vensim_model():
                       TimeSeriesOutcome('predators'),
                       TimeSeriesOutcome('prey')]
 
-    perform_experiments(model, 50)
+    return perform_experiments(model, 50)
 
 def run_netlogo_model():
     model = NetLogoModel('predpreynl', wd='model_files', model_file="PredPrey.nlogo")
@@ -84,12 +84,14 @@ def run_netlogo_model():
     with MultiprocessingEvaluator(model, n_processes=4, maxtasksperchild=8) as evaluator:
         results = evaluator.perform_experiments(model.replications)
 
+    return
+
 
 ema_logging.log_to_stderr(level=ema_logging.INFO)
 # ema_model = Model('predprey', PredPrey)
 if __name__ == '__main__':
 
-    run_vensim_model()
+    x, y = run_vensim_model()
     # run_netlogo_model() #TODO: There is a problem with the package for this code, comment it out if it does not work for you.
     # run_excel_model()
 
