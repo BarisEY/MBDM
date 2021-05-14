@@ -32,7 +32,7 @@ def get_model_for_problem_formulation(problem_formulation_id):
     
     Int_uncert = {'A.0_ID flood wave shape': [0, 132]}
     # Range of dike heightening:
-    dike_lev = {'DikeIncrease': [0, 10]}    # dm
+    dike_lev = {'DikeIncrease': [0, 10]}    # dm   DO WE NEED TO HAVE DIFFERENT DIKE LEVERS? FOR EVERY REGION? WE CAN HIGHER DIKES AT DIFFERENT POINTS RIGHT?
 
     # Series of five Room for the River projects:
     rfr_lev = ['{}_RfR'.format(project_id) for project_id in range(0, 5)]
