@@ -71,7 +71,7 @@ policies = [Policy('no release'  , **{'l'+str(i): 0.01 for i in range(100)}),
           Policy('some release', **{'l'+str(i): 0.05 for i in range(100)}),
           Policy('more release', **{'l'+str(i): 0.1  for i in range(100)})]
 
-n_scenarios = 1000
+n_scenarios = 100
 
 if __name__ == '__main__':
 
