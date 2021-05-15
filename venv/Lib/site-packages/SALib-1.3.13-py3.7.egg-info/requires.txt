@@ -1,0 +1,11 @@
+numpy
+scipy
+matplotlib
+pandas
+
+[gurobipy]
+gurobipy
+
+[testing]
+pytest
+pytest-cov

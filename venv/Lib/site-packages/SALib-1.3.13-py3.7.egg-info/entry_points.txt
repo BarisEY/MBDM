@@ -1,0 +1,3 @@
+[console_scripts]
+salib = SALib.scripts.salib:main
+
