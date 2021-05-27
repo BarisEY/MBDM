@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3de29937-f6a6-4a47-ab88-21c25a7a014d" name="Default Changelist" comment="" />
+    <list default="true" id="3de29937-f6a6-4a47-ab88-21c25a7a014d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/quaquel_github_files kopie.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/quaquel_github_files kopie.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dike_model_optimization.py" beforeDir="false" afterPath="$PROJECT_DIR$/dike_model_optimization.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/problem_formulation.py" beforeDir="false" afterPath="$PROJECT_DIR$/problem_formulation.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -11,7 +16,11 @@
   <component name="FavoritesManager">
     <favorites_list name="quaquel_github_files kopie" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
   <component name="ProjectId" id="1stLiVt6FhBAGBBK7FSIGmipoXI" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
@@ -137,10 +146,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.dike_model_optimization" />
+        <item itemvalue="Python.problem_formulation" />
         <item itemvalue="Python.dike_model_function" />
         <item itemvalue="Python.funs_generate_network" />
         <item itemvalue="Python.dike_model_simulation" />
-        <item itemvalue="Python.problem_formulation" />
       </list>
     </recent_temporary>
   </component>
@@ -157,18 +166,26 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/funs_generate_network.py</url>
-          <line>103</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/dike_model_simulation.py</url>
-          <line>61</line>
-          <option name="timeStamp" value="9" />
+          <url>file://$PROJECT_DIR$/dike_model_optimization.py</url>
+          <line>50</line>
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

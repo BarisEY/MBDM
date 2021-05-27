@@ -6,7 +6,7 @@ Created on Wed Mar 21 17:34:11 2018
 """
 from ema_workbench import (Model, CategoricalParameter,
                            ScalarOutcome, IntegerParameter, RealParameter)
-from Final_Assignment.quaquel_github_files.dike_model_function import DikeNetwork  # @UnresolvedImport
+from dike_model_function import DikeNetwork  # @UnresolvedImport
 import numpy as np
 
 

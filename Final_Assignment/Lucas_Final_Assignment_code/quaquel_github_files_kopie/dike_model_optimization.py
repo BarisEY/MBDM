@@ -16,7 +16,7 @@ import seaborn as sns
 if __name__ == '__main__':
     ema_logging.log_to_stderr(ema_logging.INFO)
 
-    model, steps = get_model_for_problem_formulation(30)
+    model, steps = get_model_for_problem_formulation(3)
 
     reference_values = {'Bmax': 175, 'Brate': 1.5, 'pfail': 0.5,
                         'discount rate 0': 3.5, 'discount rate 1': 3.5,
@@ -39,13 +39,17 @@ if __name__ == '__main__':
 
     espilon = [1e3] * len(model.outcomes)
 
-    nfe = 200 # proof of principle only, way to low for actual use
+    nfe = 10000 # nfe = 200 --> proof of principle only, way to low for actual use
 
     with MultiprocessingEvaluator(model) as evaluator:
         results, convergence = evaluator.optimize(nfe=nfe, searchover='levers',
                                                   epsilons=espilon,
                                                   convergence=convergence_metrics,
                                                   reference=ref_scenario)
+    #TODO
+    #Currently only the outcomes of interest of our specific actor are added for PF-3.
+    cols_of_interest3 = ['A.1 Total Costs', 'A.1_Expected Number of Deaths', 'A.2 Total Costs', 'A.2_Expected Number of Deaths', 'RfR Total Costs', 'Expected Evacuation Costs']
+    results = results[cols_of_interest3]
 
     fig, (ax1, ax2) = plt.subplots(ncols=2, sharex=True)
     fig, ax1 = plt.subplots(ncols=1)
