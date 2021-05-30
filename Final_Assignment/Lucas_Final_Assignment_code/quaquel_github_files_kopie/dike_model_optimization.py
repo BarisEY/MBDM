@@ -4,7 +4,7 @@ from __future__ import (unicode_literals, print_function, absolute_import,
 
 from ema_workbench import (Model, MultiprocessingEvaluator,
                            ScalarOutcome, IntegerParameter, optimize, Scenario, SequentialEvaluator)
-from ema_workbench.em_framework.optimization import EpsilonProgress
+from ema_workbench.em_framework.optimization import (EpsilonProgress, HyperVolume)
 from ema_workbench.util import ema_logging
 from ema_workbench.analysis import parcoords
 
@@ -17,7 +17,6 @@ if __name__ == '__main__':
     ema_logging.log_to_stderr(ema_logging.INFO)
 
     model, steps = get_model_for_problem_formulation(3)
-
     reference_values = {'Bmax': 175, 'Brate': 1.5, 'pfail': 0.5,
                         'discount rate 0': 3.5, 'discount rate 1': 3.5,
                         'discount rate 2': 3.5,
@@ -37,9 +36,10 @@ if __name__ == '__main__':
 
     convergence_metrics = [EpsilonProgress()]
 
+    #TODO change epsilon values
     espilon = [1e3] * len(model.outcomes)
 
-    nfe = 10000 # nfe = 200 --> proof of principle only, way to low for actual use
+    nfe = 100000 # nfe = 200 --> proof of principle only, way to low for actual use
 
     with MultiprocessingEvaluator(model) as evaluator:
         results, convergence = evaluator.optimize(nfe=nfe, searchover='levers',
@@ -50,13 +50,22 @@ if __name__ == '__main__':
     #Currently only the outcomes of interest of our specific actor are added for PF-3.
     cols_of_interest3 = ['A.1 Total Costs', 'A.1_Expected Number of Deaths', 'A.2 Total Costs', 'A.2_Expected Number of Deaths', 'RfR Total Costs', 'Expected Evacuation Costs']
     results = results[cols_of_interest3]
+    #TODO
+    #We need to define thresholds to filter a few good candidate solutions for our dataframe
+    # results = result[thresholds]
+
+    results.to_csv('first_optimization_results.csv')
+
 
     fig, (ax1, ax2) = plt.subplots(ncols=2, sharex=True)
     fig, ax1 = plt.subplots(ncols=1)
-    ax1.plot(convergence.epsilon_progress)
+    ax1.plot(convergence.nfe, convergence.epsilon_progress)
     ax1.set_xlabel('nr. of generations')
     ax1.set_ylabel('$\epsilon$ progress')
-    sns.despine()
+    #ax2.plot(convergence.nfe, convergence.hypervolume)
+    #ax2.set_ylabel('hypervolume')
+    plt.show()
+    #sns.despine()
 
     #Added this Code (Lucas)
     limits = limits = parcoords.get_limits(results)

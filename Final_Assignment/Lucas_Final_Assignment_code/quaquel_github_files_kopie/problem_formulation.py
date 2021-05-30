@@ -237,21 +237,21 @@ def get_model_for_problem_formulation(problem_formulation_id):
             
             outcomes.append(ScalarOutcome('{} Total Costs'.format(dike),
                                           variable_name=[var for var in variable_name],
-                                          function=sum_over, kind=direction))
+                                          function=sum_over, kind=direction, expected_range=(0, 1e11)))
 
             outcomes.append(ScalarOutcome('{}_Expected Number of Deaths'.format(dike),
                                           variable_name=['{}_Expected Number of Deaths {}'.format(
                                                   dike, n) for n in function.planning_steps],
-                                          function=sum_over, kind=direction))
+                                          function=sum_over, kind=direction, expected_range=(0, 1000)))
 
         outcomes.append(ScalarOutcome('RfR Total Costs', 
                                       variable_name=['RfR Total Costs {}'.format(n
                                                      ) for n in function.planning_steps],
-                                          function=sum_over, kind=direction))
+                                          function=sum_over, kind=direction, expected_range=(0, 1e11)))
         outcomes.append(ScalarOutcome('Expected Evacuation Costs', 
                                       variable_name=['Expected Evacuation Costs {}'.format(n
                                                      ) for n in function.planning_steps],
-                                          function=sum_over, kind=direction))
+                                          function=sum_over, kind=direction, expected_range=(0, 1e11)))
 
         dike_model.outcomes = outcomes
 
@@ -306,4 +306,4 @@ def get_model_for_problem_formulation(problem_formulation_id):
     return dike_model, function.planning_steps
 
 if __name__ == '__main__':
-    get_model_for_problem_formulation(3)
+    get_model_for_problem_formulation(30)
