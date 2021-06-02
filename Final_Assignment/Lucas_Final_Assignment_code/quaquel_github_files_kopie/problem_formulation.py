@@ -306,4 +306,4 @@ def get_model_for_problem_formulation(problem_formulation_id):
     return dike_model, function.planning_steps
 
 if __name__ == '__main__':
-    get_model_for_problem_formulation(30)
+    get_model_for_problem_formulation(3)
