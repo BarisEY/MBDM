@@ -55,7 +55,7 @@ if __name__ == '__main__':
     # results = result[thresholds]
 
     #results.to_csv('first_optimization_results.csv')
-    results.to_csv('second_optimization_results.csv')
+    results.to_csv('second_optimization_results.csv', index=False)
 
 
     fig, (ax1, ax2) = plt.subplots(ncols=2, sharex=True)
