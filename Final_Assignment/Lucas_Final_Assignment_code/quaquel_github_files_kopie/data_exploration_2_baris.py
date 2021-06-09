@@ -65,7 +65,7 @@ if __name__ == '__main__':
         policy_dict = dict_policies[dict_index]
         policies.append(Policy(f"pol_{dict_index}", **policy_dict))
 
-    model, array = get_model_for_problem_formulation(30)
+    model, array = get_model_for_problem_formulation(3)
     n_scenarios = 5
 
     with MultiprocessingEvaluator(model) as evaluator:

@@ -37,25 +37,19 @@ if __name__ == '__main__':
     convergence_metrics = [EpsilonProgress()]
 
     #TODO change epsilon values
-    espilon = [1e3] * len(model.outcomes)
+    #Total costs, Expected Deaths, RfR Total Costs, Evacuation Costs
+    espilon = [1e7, 0.01, 1e7, 0.01, 1e7, 0.01, 1e7, 0.01, 1e7, 0.01, 1e8, 1e4]
 
-    nfe = 10000 # nfe = 200 --> proof of principle only, way to low for actual use
+    nfe = 10 # nfe = 200 --> proof of principle only, way to low for actual use
 
     with MultiprocessingEvaluator(model) as evaluator:
         results, convergence = evaluator.optimize(nfe=nfe, searchover='levers',
                                                   epsilons=espilon,
                                                   convergence=convergence_metrics,
                                                   reference=ref_scenario)
-    #TODO
-    #Currently only the outcomes of interest of our specific actor are added for PF-3.
-    #cols_of_interest3 = ['A.1 Total Costs', 'A.1_Expected Number of Deaths', 'A.2 Total Costs', 'A.2_Expected Number of Deaths', 'RfR Total Costs', 'Expected Evacuation Costs']
-    #results = results[cols_of_interest3]
-    #TODO
-    #We need to define thresholds to filter a few good candidate solutions for our dataframe
-    # results = result[thresholds]
 
     #results.to_csv('first_optimization_results.csv')
-    results.to_csv('second_optimization_results.csv', index=False)
+    results.to_csv('third_optimization_results.csv', index=False)
 
 
     fig, (ax1, ax2) = plt.subplots(ncols=2, sharex=True)

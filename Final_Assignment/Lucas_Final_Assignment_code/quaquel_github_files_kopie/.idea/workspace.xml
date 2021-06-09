@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3de29937-f6a6-4a47-ab88-21c25a7a014d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../../Final Weekly Assignments/week5_6/assignment 8 - MORDM.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Final Weekly Assignments/week5_6/assignment 8 - MORDM.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Data_Exploration2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Data_Exploration2.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_exploration_2_baris.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_exploration_2_baris.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dike_model_optimization.py" beforeDir="false" afterPath="$PROJECT_DIR$/dike_model_optimization.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,6 +38,27 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.dike_model_optimization">
+    <configuration name="data_exploration_2_baris" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="quaquel_github_files kopie" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data_exploration_2_baris.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="dike_model_function" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="quaquel_github_files kopie" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -71,27 +93,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dike_model_optimization.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="dike_model_simulation" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="quaquel_github_files kopie" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dike_model_simulation.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -145,10 +146,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.dike_model_optimization" />
+        <item itemvalue="Python.data_exploration_2_baris" />
         <item itemvalue="Python.problem_formulation" />
         <item itemvalue="Python.dike_model_function" />
         <item itemvalue="Python.funs_generate_network" />
-        <item itemvalue="Python.dike_model_simulation" />
       </list>
     </recent_temporary>
   </component>
