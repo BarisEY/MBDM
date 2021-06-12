@@ -80,6 +80,7 @@ def get_model_for_problem_formulation(problem_formulation_id):
             name = "{}_{}".format(dike, uncert_name)
             lower, upper = Real_uncert[uncert_name]
             uncertainties.append(RealParameter(name, lower, upper))
+            uncertainties.append(RealParameter(name, lower, upper))
 
         for uncert_name in cat_uncert_loc.keys():
             name = "{}_{}".format(dike, uncert_name)
