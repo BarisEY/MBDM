@@ -57,7 +57,7 @@ if __name__ == '__main__':
 
         paraxes.legend()
 
-    # plt.show()
+        plt.show()
 
 
 
@@ -68,52 +68,10 @@ if __name__ == '__main__':
 
     model, array = get_model_for_problem_formulation(3)
 
-
-    with MultiprocessingEvaluator(model) as evaluator:
-        reevaluation_results = evaluator.perform_experiments(1000, policies=policies)
-
-    experiments, outcomes = reevaluation_results
-    save_results((experiments, outcomes), f'deep_uncertainty.tar.gz')
-
-    thresholds = {'A.1_Expected Number of Deaths' : 0.0, 'A.2_Expected Number of Deaths' : 0.0}
-
-    overall_scores = {}
-    for policy in experiments.policy.unique() :
-        logical = experiments.policy == policy
-        scores = {}
-        for k, v in outcomes.items() :
-            try :
-                n = np.sum(v[logical] >= thresholds[k])
-            except KeyError :
-                continue
-            scores[k] = n / 1000
-        overall_scores[policy] = scores
-
-    overall_scores = pd.DataFrame(overall_scores).T
-
-    limits = parcoords.get_limits(overall_scores)
-    paraxes = parcoords.ParallelAxes(limits)
-    paraxes.plot(overall_scores)
-    plt.show()
-
-    overall_scores = {}
-    regret = []
-    for scenario in experiments.scenario.unique() :
-        logical = experiments.scenario == scenario
-        temp_results = {k : v[logical] for k, v in outcomes.items()}
-        temp_results = pd.DataFrame(temp_results)
-        temp_experiments = experiments[experiments.scenario == scenario]
-
-        best = temp_results.max()
-        best['max_P'] = temp_results.max_P.min()
-        # scenario_regret = a - best
-        scenario_regret['policy'] = temp_experiments.policy.values
-        regret.append(scenario_regret)
-
-    regret = pd.concat(regret)
-    maxregret = regret.groupby('policy').max()
-
-    limits = parcoords.get_limits(maxregret)
-    paraxes = parcoords.ParallelAxes(maxregret)
-    paraxes.plot(maxregret)
-    plt.show()
+    # This was to run the experiment again with the different policies:
+    #
+    # with MultiprocessingEvaluator(model) as evaluator:
+    #     reevaluation_results = evaluator.perform_experiments(1000, policies=policies)
+    #
+    # experiments, outcomes = reevaluation_results
+    # save_results((experiments, outcomes), f'deep_uncertainty.tar.gz')
