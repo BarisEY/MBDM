@@ -21,7 +21,7 @@ def get_network(plann_steps_max=10):
         df = pd.read_excel("data//dikeIjssel.xlsx", dtype=object, engine="openpyxl")
         first_try = True
     except:
-        df = pd.read_excel(fr"{path}\\quaquel_github_files\\data\\dikeIjssel.xlsx", dtype=object, engine="openpyxl")
+        df = pd.read_excel(fr"{path}\\quaquel_github_files_kopie\\data\\dikeIjssel.xlsx", dtype=object, engine="openpyxl")
         first_try = False
     df = df.set_index('NodeName')
 
@@ -43,14 +43,14 @@ def get_network(plann_steps_max=10):
         frag_curves = pd.read_excel("data//fragcurves//frag_curves.xlsx",
                                 header=None, index_col=0, engine="openpyxl").transpose()
     except:
-        frag_curves = pd.read_excel(fr'{path}\\quaquel_github_files\\data\\fragcurves\\frag_curves.xlsx',
+        frag_curves = pd.read_excel(fr'{path}\\quaquel_github_files_kopie\\data\\fragcurves\\frag_curves.xlsx',
                                 header=None, index_col=0, engine="openpyxl").transpose()
 
     try:
         calibration_factors = pd.read_excel('data//fragcurves//calfactors_pf1250.xlsx',
                                             index_col=0, engine="openpyxl")
     except:
-        calibration_factors = pd.read_excel(fr'{path}\\quaquel_github_files\\data\\fragcurves\\calfactors_pf1250.xlsx',
+        calibration_factors = pd.read_excel(fr'{path}\\quaquel_github_files_kopie\\data\\fragcurves\\calfactors_pf1250.xlsx',
                                         index_col=0, engine="openpyxl")
 
     # Upload room for the river projects:
@@ -58,7 +58,7 @@ def get_network(plann_steps_max=10):
     try:
         projects = pd.read_excel("data//rfr_strategies.xlsx")
     except:
-        projects = pd.read_excel(fr'{path}\\quaquel_github_files\\data\\rfr_strategies.xlsx')#, index_col=0,
+        projects = pd.read_excel(fr'{path}\\quaquel_github_files_kopie\\data\\rfr_strategies.xlsx')#, index_col=0,
                             # names=['project name', 0,1,2,3,4,5])
     if len(projects.columns) == 6:
         projects.columns = ['project name', 0,1,2,3,4]
@@ -85,7 +85,7 @@ def get_network(plann_steps_max=10):
     try:
         G.add_node('EWS', **pd.read_excel('data//EWS.xlsx').to_dict())
     except:
-        G.add_node('EWS', **pd.read_excel(fr'{path}\\quaquel_github_files\\data\\EWS.xlsx').to_dict())
+        G.add_node('EWS', **pd.read_excel(fr'{path}\\quaquel_github_files_kopie\\data\\EWS.xlsx').to_dict())
     G.nodes['EWS']['type'] = 'measure'
 
     # Upload muskingum params:
@@ -93,7 +93,7 @@ def get_network(plann_steps_max=10):
         Muskingum_params = pd.read_excel('data//Muskingum//params.xlsx',
                                          index_col=0)
     except:
-        Muskingum_params = pd.read_excel(fr'{path}\\quaquel_github_files\\data\\Muskingum\\params.xlsx',
+        Muskingum_params = pd.read_excel(fr'{path}\\quaquel_github_files_kopie\\data\\Muskingum\\params.xlsx',
                                      index_col=0)
 
     # Fill network with crucial info:
@@ -114,8 +114,8 @@ def get_network(plann_steps_max=10):
             filename = f'data//rating_curves//{dike}_ratingcurve_new.txt'
             name = f'data//losses_tables//{dike}_lossestable.xlsx'
         else:
-            filename = fr'{path}\\quaquel_github_files\\data\\rating_curves\\{dike}_ratingcurve_new.txt'
-            name = fr'{path}\\quaquel_github_files\\data\\losses_tables\\{dike}_lossestable.xlsx'
+            filename = fr'{path}\\quaquel_github_files_kopie\\data\\rating_curves\\{dike}_ratingcurve_new.txt'
+            name = fr'{path}\\quaquel_github_files_kopie\\data\\losses_tables\\{dike}_lossestable.xlsx'
         G.nodes[dike]['r'] = np.loadtxt(filename)
 
         # Assign losses per location:
@@ -132,6 +132,6 @@ def get_network(plann_steps_max=10):
             f'data//hydrology//wave_shapes.xls', index_col=0)
     except:
         G.nodes['A.0']['Qevents_shape'] = pd.read_excel(
-            fr'{path}\\quaquel_github_files\\data\\hydrology\\wave_shapes.xls', index_col=0)
+            fr'{path}\\quaquel_github_files_kopie\\data\\hydrology\\wave_shapes.xls', index_col=0)
 
     return G, dike_list, dike_branches, steps
